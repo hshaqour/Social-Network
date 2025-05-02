@@ -1,0 +1,4 @@
+#post_submit:disabled {
+    cursor: not_allowed;
+    opacity: 0.5;
+}

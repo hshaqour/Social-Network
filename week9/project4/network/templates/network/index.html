@@ -1,0 +1,33 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+
+    <div id="All_posts" class="container mt-4">
+        <h2>All Posts</h2>
+        <div class="card p-4" id="post">
+            <form id="new_post">
+                {% csrf_token %}
+                <h3 class="mb-3">New Post</h3>
+                <div class="form-group">
+                    <textarea class="form-control" id="postContent" rows="3" placeholder="What's on your mind?"></textarea>
+                </div>
+                <button id="post_submit" type="submit" class="btn btn-primary mt-2">Post</button>
+            </form>
+        </div>
+        
+        <div class="card p-4" id="post">
+            {% for post in posts %}
+            <div class="post mb-3">
+                <h5><a href="{% url 'profile' post.poster.username %}" class="text-decoration-none">{{ post.poster.username }}</a></h5>
+                <p>{{ post.contents }}</p>
+                <small class="text-muted">{{ post.timestamp }}</small>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
+    {% endif %}
+{% endblock %}

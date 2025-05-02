@@ -1,0 +1,37 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="container mt-4">
+
+    <!-- User info -->
+     <h2>{{ profile_user.username }}</h2>
+     <p><strong>Followers:</strong> <span id="followers-count">{{ followers_count }}</span></p>
+     <p><strong>Following:</strong> <span id="following-count">{{ following_count }}</span></p>
+
+    <!-- Follow and unfollow buttons -->
+    {% if user.is_authenticated and user != profile_user %}
+        {% if is_following %}
+            <button id="follow-btn" class="btn btn-primary" onclick="console.log('Inline click!')">Unfollow</button>
+        {% else %}
+            <button id="follow-btn" class="btn btn-primary" onclick="console.log('Inline click!')">Follow</button>
+        {% endif %}
+    {% endif %}
+
+    <hr>
+
+    <!-- Users posts -->
+    <h3 class="mt-4">Posts by {{ profile_user.username }}</h3>
+    {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p>{{ post.contents }}</p>
+                <small class="text-muted">{{ post.timestamp }}</small>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted">No posts yet.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
