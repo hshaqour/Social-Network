@@ -88,6 +88,8 @@ def follow(request, username):
 
 
 
+def check_auth(request):
+    return JsonResponse({"authenticated": True})
 
 
 

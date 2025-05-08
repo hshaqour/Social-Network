@@ -1,6 +1,16 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
+    <script>
+        fetch('/check_auth')
+        .then(res => {
+            if (res.status !== 200) {
+            // Not authenticated
+            window.location.href = '/login';
+            }
+        });
+    </script>
+
     {% if user.is_authenticated %}
 
     <div id="All_posts" class="container mt-4">
