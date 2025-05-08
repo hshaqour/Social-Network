@@ -7,6 +7,6 @@ services:
     startCommand: "gunicorn network.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: network.settings
+        value: project4.settings
       - key: SECRET_KEY
         generateValue: true
