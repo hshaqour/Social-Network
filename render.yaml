@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: social-network
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn network.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: network.settings
+      - key: SECRET_KEY
+        generateValue: true
