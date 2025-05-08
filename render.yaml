@@ -3,7 +3,10 @@ services:
     name: social-network
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py migrate
+      python manage.py createsu
     startCommand: "gunicorn network.wsgi:application"
     envVars:
       - key: DJANGO_SETTINGS_MODULE
